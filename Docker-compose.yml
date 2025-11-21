@@ -7,7 +7,7 @@ services:
   app:
     image: mrouxlab2:v1
     ports:
-      - "8083:8082"
+      - "8073:8082"
     container_name: mroux_amsdata_2025_cont
     depends_on:
       - db

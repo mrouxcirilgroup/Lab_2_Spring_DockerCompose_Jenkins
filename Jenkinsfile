@@ -12,11 +12,11 @@ pipeline {
         }
          stage('Lancement de la Stack Docker-Compose') {
                     steps {
-                        sh 'docker compose -f Docker-compose.yml down'
-                        sh 'docker compose -f Docker-compose.yml up -d'
+                        sh 'docker compose -f Docker-compose-mroux.yml down'
+                        sh 'docker compose -f Docker-compose-mroux.yml up -d'
                     }
          }
-         stage('tag and push image to dockerhub de mezghich') {
+         stage('tag and push image to dockerhub de mrouxcirilgroup') {
                      steps {
                          echo "tag and push image ..."
                          sh "docker tag mrouxlab2:v1 mrouxcirilgroup/mrouxlab2:v1"

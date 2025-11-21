@@ -21,7 +21,7 @@ pipeline {
                          echo "tag and push image ..."
                          sh "docker tag mrouxlab2:v1 mrouxcirilgroup/mrouxlab2:v1"
                          sh "docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW"
-                         sh "docker push mrouxlab2:v1"
+                         sh "docker push mrouxcirilgroup/mrouxlab2:v1"
                          sh "docker logout"
                      }
                      post {

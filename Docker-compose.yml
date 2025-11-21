@@ -8,7 +8,7 @@ services:
     image: mrouxlab2:v1
     ports:
       - "8083:8082"
-    container_name: mezghich_amsdata_2025_cont
+    container_name: mroux_amsdata_2025_cont
     depends_on:
       - db
     restart: always
@@ -22,7 +22,7 @@ services:
   # Database Service (Mysql)
   db:
     image: mysql:latest
-    container_name: mysql_mezghich_cont
+    container_name: mysql_mroux_cont
     volumes:
       - mroux_db_ams_vol:/var/lib/mysql
     restart: always
@@ -37,7 +37,7 @@ services:
   # phpmyadmin Service
   phpmyadmin:
     image: phpmyadmin
-    container_name: pmadmin_mezghich_cont
+    container_name: pmadmin_mroux_cont
     depends_on:
       - db
     restart: always

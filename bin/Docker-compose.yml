@@ -1,0 +1,58 @@
+# Docker Compose
+version: '3.3'
+
+# Define services
+services:
+  # spring service
+  app:
+    image: mezghich_amsdata_2025
+    ports:
+      - "8082:8082"
+    container_name: mezghich_amsdata_2025_cont
+    depends_on:
+      - db
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/dbams2024?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: sip
+      SPRING_DATASOURCE_PASSWORD: sip-ac2024
+    networks:
+      - mezghich_net
+
+  # Database Service (Mysql)
+  db:
+    image: mysql:latest
+    container_name: mysql_mezghich_cont
+    volumes:
+      - mezghich_db_ams_vol:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: dbams2024
+      MYSQL_USER: sip
+      MYSQL_PASSWORD: sip-ac2024
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - mezghich_net
+
+  # phpmyadmin Service
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: pmadmin_mezghich_cont
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 8091:80
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - mezghich_net
+
+# Dec
+volumes:
+  mezghich_db_ams_vol:
+
+networks:
+  mezghich_net:
+
+
